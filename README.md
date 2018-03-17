@@ -1,6 +1,6 @@
-## Testnet Documentation
+## Factom Community Testnet Documentation
 The wiki is displayed through daux.io - a documentation generator that uses a simple folder structure and markdown files to create documentation on the fly.
-Contributers can collaborate on the wiki through this github repository.
+Contributors can collaborate on the wiki through this github repository.
 
 There are 3 main ways to contribute to this wiki:
 ### 1. Pull requests (preferred)
@@ -11,5 +11,5 @@ https://help.github.com/articles/creating-a-pull-request/
 ### 2. Become a collaborator
 Members of the Documentation workgroup can be granted access to this repository and make changes directly.
 
-### 3. Contact the workgroup chair (only for minor changes)
+### 3. Contact the workgroup chair (only for minor changes or well-prepared material such as documentation from other working groups)
 Join our Discord and contact the Workgroup Chair directly in the Documentation workgroup.
