@@ -1,0 +1,32 @@
+{
+    "title": "Factom Community Testnet",
+    "tagline": "The Best Community Testnet",
+    "author": "Factom Community",
+    "image": "app1.png",
+    "ignore": {
+            "files": ["Work_In_Progress.md"],
+            "folders": ["99_Not_Ready"]
+    },
+    "live": {
+        "clean_urls": true
+    },
+    "html": {
+        "theme": "daux-navy",
+        "breadcrumbs": true,
+        "breadcrumb_separator": "Chevrons",
+        "toggle_code": true,
+        "date_modified": true,
+        "date_modified_format": "l, F j, Y g:i A",
+        "float": false,
+        "inherit_index": true,
+
+        "repo": "FactomProject/communitytestnet",
+
+        "powered_by": "Powered by Daux.io"
+    },
+    "confluence": {
+        "base_url": "https://dauxio.atlassian.net/wiki/",
+        "space_id": "DOC",
+        "root_id": 196610
+    }
+}
