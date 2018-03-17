@@ -149,7 +149,7 @@ Take note of your address, then visit the Factoid Faucet to fund your address, e
 
 Before you continue, please verify that your address has been funded:
 
-    docker exec factomd_node factom-cli balance EsXXXXXXXXXXXXXX
+    docker exec factomd_node factom-cli balance ECXXXXXXXXXXXXXX
 
 Do note that your wallet has to be fully synced before your credits will appear in your balance.
 You can verify your sync status from the Control Panel.
