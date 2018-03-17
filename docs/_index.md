@@ -4,6 +4,5 @@
 <p>
 <h3>Contact information:</h3>
 E-mail: factom.testnet@icloud.com <br />
-Discord: https://discord.gg/q75MJGJ (this is the primary support channel) <br />
-Slack: http://factom-slack.herokuapp.com (#community-testnet)
+Discord: https://discord.gg/XWJezKm <br />
 </p>
