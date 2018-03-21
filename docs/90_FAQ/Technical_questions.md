@@ -25,6 +25,13 @@ Be sure to include '-n create -f'
 
 ## Why do I get an error when adding the configuration file to the docker?
 
-This can be caused by using an older pdf version of the installation instruction where an extra space  is inserted before 'destination/m2/factomd.conf'. Try running the below command:
+This can be caused by using an older pdf version of the installation instructions where an extra space is inserted before 'destination/m2/factomd.conf'. Try running the below command:
 
 `docker run --rm -v ${PWD}/factomd.conf:/source -v communitytestnet_factomd_volume:/destination busybox /bin/cp /source /destination/m2/factomd.conf`
+
+
+## Why do I get an error trying to nodify my node to utilize its new identity?
+
+This can be caused by using an older pdf version of the installation instructions where it seems there is a line break in the command right after 'A-2'. This gives the error 'no such command as create.conf'. However the command is one single line. Try running the command:
+
+`docker exec factomd_node bash -c "sed -i '/Node Identity Information/q' /root/.factom/m2/factomd.conf && grep Identity -A 2 create.conf >> /root/.factom/m2/factomd.conf"`
