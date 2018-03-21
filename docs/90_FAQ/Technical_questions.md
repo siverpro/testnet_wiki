@@ -15,6 +15,6 @@ After the Wait- and Ignore modes go away, your node will request new blocks and 
 
 This error often happens becuase the command to generate an ID and public and private keys is missing falgs at the end of the command. When you run:
 
-docker exec factomd_node serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f
+`docker exec factomd_node serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f`
 
 Be sure to include '-n create -f'
