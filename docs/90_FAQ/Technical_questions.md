@@ -13,8 +13,8 @@ After the Wait- and Ignore modes go away, your node will request new blocks and 
 
 ## Why do I get a "No such file or directory" error when trying to run the script for publishing my new ID to the blockchain?
 
-This error often happens becuase the command to generate an ID and public and private keys is missing falgs at the end of the command. When you run
+This error often happens becuase the command to generate an ID and public and private keys is missing falgs at the end of the command. When you run:
 
 docker exec factomd_node serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f
 
-Be sure tin include '-n create -f'
+Be sure to include '-n create -f'
