@@ -17,7 +17,7 @@ Notes:
 
 1. Copy the file from remote docker A to remote host A -- (docker cp)
 
-        docker cp factomd_node:/root/.factom/m2/factomd.conf
+        docker cp factomd_node:/root/ .factom/m2/factomd.conf
 
 2. Copy the file from remote host A to local host -- (scp)
 
