@@ -10,10 +10,6 @@ missed, which is one of the things that helps keep the network robust.
 
 After the Wait- and Ignore modes go away, your node will request new blocks and process list items from its peers, and will catch up.
 
-## Why can't I see the Test Credits, that were already transfered to me, in my address?
-
-Your node needs to be fully synced before you can see the latest transactions that happneded to or from your address.
-
 
 ## Why do I get a "No such file or directory" error when trying to run the script for publishing my new ID to the blockchain?
 
@@ -22,3 +18,10 @@ This error often happens becuase the command to generate an ID and public and pr
 `docker exec factomd_node serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f`
 
 Be sure to include '-n create -f'
+
+
+## Why do I get an error when adding the configuration file to the docker?
+
+This can be caused by using an older pdf version of the installation instruction where an extra space  is inserted before 'destination/m2/factomd.conf'. Try running the below command:
+
+`docker run --rm -v ${PWD}/factomd.conf:/source -v communitytestnet_factomd_volume:/destination busybox /bin/cp /source /destination/m2/factomd.conf`
