@@ -35,3 +35,14 @@ This can be caused by using an older pdf version of the installation instruction
 This can be caused by using an older pdf version of the installation instructions where it seems there is a line break in the command right after 'A-2'. This gives the error 'no such command as create.conf'. However the command is one single line. Try running the command:
 
 `docker exec factomd_node bash -c "sed -i '/Node Identity Information/q' /root/.factom/m2/factomd.conf && grep Identity -A 2 create.conf >> /root/.factom/m2/factomd.conf"`
+
+
+## How come I get an error about not being able to connect to the docker when adding the configuration file?
+
+When running the the command to add the configuration file to the docker the error 'docker: Got permission denied while trying to connect to the Docker daemon socket...' can occur. This is because the user haven't got the proper rights to use the docker program.
+
+When setting up your docker and providing user rights by running the command:
+
+`sudo usermod -aG docker USERNAME`
+
+It is needed to log out of the server before the changes take effect.
