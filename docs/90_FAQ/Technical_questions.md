@@ -10,6 +10,9 @@ missed, which is one of the things that helps keep the network robust.
 
 After the Wait- and Ignore modes go away, your node will request new blocks and process list items from its peers, and will catch up.
 
+## Why can't I see the Test Credits that were just transfered to my addrees?
+
+Your node needs to be fully synced before you can see any transactions to or from your address.
 
 ## Why do I get a "No such file or directory" error when trying to run the script for publishing my new ID to the blockchain?
 
