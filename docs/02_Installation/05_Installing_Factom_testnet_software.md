@@ -57,9 +57,10 @@ Run this command to ensure that factomd is running:
 
     docker exec factomd_node ps -aux | grep factomd
 
-If you get a similar response as in the image below everything is OK, and
+If you get a similar response as shown below everything is OK, and
 you may continue to the next step.
 
+    root        13 14.5  0.5 475804 44764 ?        Sl   21:27   0:01 /root/bin/factomd -faulttimeout=120 -startdelay=600 -network=CUSTOM -customnet=fct_community_test -blktime=600 -debugconsole=remotehost:8093
 Opening the appropriate ports on your network
 ---------------------------------------------
 
