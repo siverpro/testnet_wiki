@@ -63,7 +63,8 @@ In the daemon.json file insert and save:
 
 After saving, run the following commands:
 
-`docker-compose down
+```
+docker-compose down
 
 sudo service docker stop
 
@@ -71,4 +72,5 @@ sudo ufw reload
 
 sudo service docker start
 
-docker-compose up -d`
+docker-compose up -d
+```
