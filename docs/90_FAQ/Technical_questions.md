@@ -45,3 +45,30 @@ When setting up your docker and providing user rights by running the command:
 `sudo usermod -aG docker USERNAME`
 
 It is needed to log out of the server before the changes take effect.
+
+
+## I have set my firewall as instructed, but ports that should be closed are still open. How do I fix that?
+
+Docker bypasses firewall settings created using Uncomplicated Firewall (ufw). For people who do not use a firewall from their cloud provider, that means that all of the ports the Factom daemon might use will automatically be opened, including ports that you do not want to be exposed to the internet.
+
+To fix that problem, we need to create a file which tells Docker not to bypass ufw settings:
+
+`sudo nano /etc/docker/daemon.json`
+
+In the daemon.json file insert and save:
+
+`{
+"iptables": false
+}`
+
+After saving, run the following commands:
+
+`docker-compose down
+
+sudo service docker stop
+
+sudo ufw reload
+
+sudo service docker start
+
+docker-compose up -d`
