@@ -1,8 +1,12 @@
 ## Why does my node need to have a fixed IP address?
 
-The requirement for a fixed IP address is not a requirement for the Factom protocol itself. It is a requirement for the testnet.
+The requirement for a fixed IP address is not a requirement for the Factom protocol itself. It is a requirement for the Testnet authority set, so Factom engineers can do easier debugging and deployment of updates.
+
+
+## What happens if two machines with the same identity were to be on the network at the same time?
 
 If two machines with the same identity but different IP addresses would enter the Factom network, one would kill itself to avoid causing issues.
+
 
 ## How come that 4 level of keys are issued when doing key generation?
 
