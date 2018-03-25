@@ -21,11 +21,11 @@ Notes:
 
 2. Copy the file from remote host A to local host -- (scp)
 
-        scp ubuntu@IP:~/factomd.conf .
+        scp USERNAME@IP:~/factomd.conf .
 
 3. Copy the file from local host to remote remote host B -- (scp)
 
-        scp factomd.conf ubuntu@IP:~/factomd.conf
+        scp factomd.conf USERNAME@IP:~/factomd.conf
 
 4. Create the necessary directory inside the docker (mkdir)
         
