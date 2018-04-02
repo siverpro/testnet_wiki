@@ -59,9 +59,7 @@ function properly.
     this option.
 
     Those who want to run an Authority server will need to fill out this application
-    and send it via e-mail to factom.testnet@icloud.com, alternatively attach it to a
-    Private message directed at user «quintilian» on the Factom community slack
-    channel.
+    and send it via e-mail to factom.testnet@icloud.com, alternatively join the factom community discord found [here](https://discord.gg/q75MJGJ) and head over to the wg-new-members or wg-support channel.
 
 2. Participating as an ordinary node
 
