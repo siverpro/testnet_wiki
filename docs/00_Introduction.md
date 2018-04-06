@@ -58,8 +58,7 @@ function properly.
     who has a dedicated computer that satisfies the uptime requirement should chose
     this option.
 
-    Those who want to run an Authority server will need to fill out this application
-    and send it via e-mail to factom.testnet@icloud.com, alternatively join the factom community discord found [here](https://discord.gg/q75MJGJ) and head over to the wg-new-members or wg-support channel.
+    Those who want to run an Authority server will need to fill out [this application](https://docs.google.com/forms/d/e/1FAIpQLSc8F_8jfmX2Fcp557urZZq2sGE9o9d3EACDUpr1o0fnF2PfZA/viewform), in addition it is highly recommended to join the factom community discord found [here](https://discord.gg/q75MJGJ)
 
 2. Participating as an ordinary node
 
