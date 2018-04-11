@@ -77,4 +77,4 @@ docker-compose up -d
 
 ## The "invalid character 'S' looking for beginning of value" error message
 
-This is something that comes up when there's an unhandled exception. It's becoming more rare, but any time there's code without 100% exception handling this will occasionally. No real solution for this except.. Trying again. 
+This is something that comes up when there's an unhandled exception. It's becoming more rare, but any time there's code without 100% exception handling this will occasionally happen. No real solution for this except.. Trying again. 
