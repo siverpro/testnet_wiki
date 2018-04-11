@@ -187,11 +187,11 @@ of where the public key and Root chain information is presented).
 The previous command also (by magic) created a script for publishing your
 new ID to the blockchain. Run this script by executing the following commands:
 
-    docker exec factomd_node chmod 766 /root/fullidentity.sh
+    docker exec factomd_node chmod 766 /root/create.sh
 
 and;
 
-    docker exec factomd_node bash /root/fullidentity.sh
+    docker exec factomd_node bash /root/create.sh
 
 Verify that your ID is written to the testnet blockchain by executing:
 
