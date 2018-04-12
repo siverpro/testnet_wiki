@@ -8,9 +8,11 @@
 # Brainswap
 
 Brainswapping is the idea of having 2 nodes switch identities at the same time. We call is "brainswapping" because a node's identity dictates how it behaves. 
-```
+
+
 **Note**: The procedure doesn't actually have to be a "swap"; a "brain-transfer" is also an alternative.
-```
+
+
 It was implemented as a way to update the network without having to bring it down, as federated servers can "brainswap" with standby nodes that have already been updated with the new code.
 
 The network will not perceive this as a node going offline, as the identity (and thus the associated federated server) is still online.
