@@ -1,16 +1,16 @@
 [TOC]
-** Caution**: This feature has not been fully tested, although some members have successfully performed this on the testnet already. Worst case scenario is that we test the network's faulting ability.
+**Caution**: This feature has not been fully tested, although some members have successfully performed this on the testnet already. Worst case scenario is that we test the network's faulting ability.
 
-** Prequisites: **
+**Prequisites:**
 * You need to have an authority node to test this on, and you need to have at least 1 standby node that is listed on factoid.org.
 * You should announce in #testnet-restarts when you are performing the swap/transfer, questions can be discussed in #testnet-development. 
 
-## Brainswap
+# Brainswap
 
 Brainswapping is the idea of having 2 nodes switch identities at the same time. We call is "brainswapping" because a node's identity dictates how it behaves. 
-
+```
 **Note**: The procedure doesn't actually have to be a "swap"; a "brain-transfer" is also an alternative.
-
+```
 It was implemented as a way to update the network without having to bring it down, as federated servers can "brainswap" with standby nodes that have already been updated with the new code.
 
 The network will not perceive this as a node going offline, as the identity (and thus the associated federated server) is still online.
@@ -19,16 +19,16 @@ After transferring the **Authority identity** the node operator can now shutdown
 
 The procedure can also be used for migrating the **Authority identity** to a new physical server, by not performing the brainswap a second time to reverse the first swap.
 
-### Definitions
+## Definitions
 
 * **Federated Node** is the node that holds your authority identity, and needs to be updated.
 * **Standby Node** is a follower node on the network that you control.
 
-### Prepping the Brain Swap
+## Prepping the Brain Swap
 
 To perform the brain swap you will need 1 standby node that is ready. The standby node should be running the most recent Factomd software version.
 
-#### Determining if you Standby Node is ready
+### Determining if you Standby Node is ready
 
 If your standby node is not in sync with the network, performing the brainswap will result in your authority server going offline, so it is crucial to first check the health of the standby node.
 
@@ -68,10 +68,7 @@ Once you set the `ChangeAcksHeight` to __DBHeight+3__, save both files.
 
 At the block height `ChangeAcksHeight` you should see both nodes change identities. If none of your nodes crash, and the identities change, the swap was successful.
 
-
-
-
-### Detailed instructions for some of the above aspects
+## Detailed instructions for some of the above aspects
 
 __Check if the DBHeight matches that of the network__
 -- This is done by comparing DBHeight in your control panel (localhost:8090) with the dbheight of your federated server.
