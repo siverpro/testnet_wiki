@@ -1,12 +1,11 @@
-To get started on the Factom Community Testnet you need to **fill out this [form](https://goo.gl/forms/NMPkOGkoRrupNBH13) first.**
-
 ## General requirements for running a Factom node
--------------------------- 
+--------------------------
 - Everyone should join the Discord before starting the installation process so you can get help. It is also required before being promoted to the authority set.
     You should use the same nick as in Slack (if you use it).
 - After starting the node for the first time (start.sh) you should wait until it has fully synced with the rest of the net before continue the installation process. Verify via control panel at :8090 ("Node sync status 1: 100%")
     This could take hours.
 - Compulsory for being part of the authority set: have Telegram app installed and push notifications for own node enabled as described in the "monitoring" chapter.
+- You need to **fill out this [form](https://docs.google.com/forms/d/e/1FAIpQLSczJm-U7P2AFh3nDikSrfgnUG3E4fjExNE7AH_RL3nDdHg9_g/viewform)** to join the the Factom Community Testnet.
 
 ## Minimum system requirements
 ---------------------------
