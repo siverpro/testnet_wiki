@@ -20,14 +20,14 @@ Note: [This alternative installation guide](https://www.digitalocean.com/communi
 
 First you'll need curl for the docker installation. Installing curl is done as follows:
 
-    $ sudo apt install curl
+    sudo apt install curl
 
 You will be prompted for your linux account password here.  
 
 Docker is installed using a terminal window. Open one, and then use the following "convenience script":
 
-    $ curl -fsSL get.docker.com -o get-docker.sh
-    $ sudo sh get-docker.sh
+    curl -fsSL get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
 
 
 More about the installation can be found [here](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
@@ -47,13 +47,13 @@ This should then generate the «hello-world» image (note that sudo is not used)
 
 Install docker-compose
 ----------------------
-Note: [This alternative installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04)
- could be of help if you run into any problems.
-
 Visit [this page](https://docs.docker.com/compose/install/) and install compose
 per the instructions in the «Linux» tab.
 Note: The first command (sudo curl) is just an example. You should visit the link provided on that page to learn
 what the latest docker-compose version is an download it.
+
+Note: [This alternative installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04)
+ could be of help if you run into any problems.
 
 Install Git.
 ------------

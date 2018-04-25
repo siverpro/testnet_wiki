@@ -83,7 +83,7 @@ internal port 8110 -> local IP of server).
 To test that the port forwarding was successful and that your ports are now
 exposed to the internet, try the following commands
 
-    nc PUBLIC_IP 8110 
+    nc PUBLIC_IP 8110
 
 (should yield text like «network version/type/lenght)
 
@@ -110,7 +110,7 @@ To be able to join the test net as an authority server or an audit server you wi
 need a «personal» server identity. This is done by executing some special
 commands that tells your factom node to generate a new ID.
 
-**Important: After starting the node for the first time (start.sh) you should wait until 
+**Important: After starting the node for the first time (start.sh) you should wait until
 it has fully synced with the rest of the net before you interact with the blockchain in the following steps.
 Verify via control panel at :8090 ("Node sync status 1: 100%"). This could take hours.**
 
@@ -152,7 +152,8 @@ Before you continue, please verify that your address has been funded:
 
     docker exec factomd_node factom-cli balance ECXXXXXXXXXXXXXX
 
-Do note that your wallet has to be fully synced before your credits will appear in your balance.
+Note: Use the public address. The amount of credits in the TC-account will be displayed.
+Your wallet has to be fully synced before your credits will appear in your balance.
 You can verify your sync status from the Control Panel.
 
 -----
@@ -168,10 +169,6 @@ Export the addresses you generated in the previous steps:
 Note: This will export the SECRET/PRIVATE addresses associated with the TC/TTS-addresses
 
 ![Image 2](Pasted2.png)
-
-Verify independently that your TC address has been funded by executing
-docker exec factomd_node factom-cli balance ECXXXXXXXXXXXX  
-Note: Use the public address. The amount of credits in the TC-account will be displayed.
 
 Execute the following command to generate an ID, public/private keys:
 

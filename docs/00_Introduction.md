@@ -10,7 +10,7 @@ Currently the Factom main net (the production environment) consists of 18 Author
 
 Factom’s last and upcoming milestone (M3) will distribute the control of the Authority set to people/entities/companies that will run the servers on a for-profit-basis.
 
-The FCN is a parallell network to Factom’s main net, and hosted on servers/nodes provided by the community.
+The FCN is a parallel network to Factom’s main net, and hosted on servers/nodes provided by the community.
 
 As of March 2018 the members of the Factom community has pledged to host more than 60 Authority test servers.
 
@@ -58,7 +58,7 @@ function properly.
     who has a dedicated computer that satisfies the uptime requirement should chose
     this option.
 
-    Those who want to run an Authority server will need to fill out [this application](https://docs.google.com/forms/d/e/1FAIpQLSc8F_8jfmX2Fcp557urZZq2sGE9o9d3EACDUpr1o0fnF2PfZA/viewform), in addition it is highly recommended to join the factom community discord found [here](https://discord.gg/q75MJGJ)
+    Those who want to run an Authority server will need to fill out [this application](https://docs.google.com/forms/d/e/1FAIpQLSczJm-U7P2AFh3nDikSrfgnUG3E4fjExNE7AH_RL3nDdHg9_g/viewform), in addition it is highly recommended to join the factom community discord found [here](https://discord.gg/q75MJGJ)
 
 2. Participating as an ordinary node
 
@@ -77,5 +77,5 @@ function properly.
     will be on your way.
 
 After figuring out what kind of server/node you want to run, you should verify that
-the computer you will be using meets the [minimum system requirement](../01_System_requirements). As pointed out above, Authority servers will also require a stable internet
+the computer you will be using meets the [minimum system requirement](../01_Before_you_start/01_Requirements). As pointed out above, Authority servers will also require a stable internet
 connection and have an uptime measured in weeks and months; not days.
