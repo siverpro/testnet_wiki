@@ -1,5 +1,5 @@
 [TOC]
-Installing the Authority server on Ubuntu 16.04 LTS (Long Term Support)
+Installing the Authority server on Ubuntu 18.04 LTS (Long Term Support)
 ======================================================================
 
 Install Ubuntu Server edition
@@ -58,9 +58,10 @@ Install Git.
     
 TL:DR; (For experienced users)
 -------
-Install Ubuntu Server and the following packages:
+Install Ubuntu Server. Update and install required packages:
 
-    sudo apt-get install curl docker.io git
+    sudo apt-get update -y && sudo apt-get upgrade -y
+    sudo apt-get install curl docker.io git -y
     
 Add docker privileges to the current user:
 
