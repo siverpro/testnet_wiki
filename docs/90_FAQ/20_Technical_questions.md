@@ -78,3 +78,14 @@ docker-compose up -d
 ## The "invalid character 'S' looking for beginning of value" error message
 
 This is something that comes up when there's an unhandled exception. It's becoming more rare, but any time there's code without 100% exception handling this will occasionally happen. No real solution for this except.. Trying again. 
+
+## "xxxx Full Hash incorrect at height 27026..." - error message
+If you experience the error 
+
+    xxxx Full Hash incorrect at height 27026
+    panic: Full hash incorrect block at 27026 FNode0
+    
+It is recommended to delete your database and let your node synchronize from scratch. To delete the database execute
+    
+    docker exec factomd_node rm -rf .factomd/m2/FastBoot_CUSTOM_v7.db .factomd/m2/FastBoot_CUSTOM_v8.db .factomd/m2/custom-database
+
