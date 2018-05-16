@@ -33,7 +33,7 @@ After the installation is complete you need to grant your Ubuntu-user
 permission to actually use the docker program. This is done by executing the
 following commands:
 
-    sudo usermod -aG docker USERNAME
+    sudo usermod -aG docker $USER
 
 Note: After running the commands above you need to log out of Ubuntu and log back in for the change to
 take effect. Verify that the command was successful by opening the terminal and running
@@ -42,20 +42,6 @@ take effect. Verify that the command was successful by opening the terminal and 
 
 This should then generate the «hello-world» image (note that sudo is not used).
 
-Install docker-compose
-----------------------
-Visit [this page](https://docs.docker.com/compose/install/) and install compose
-per the instructions in the «Linux» tab. Currently, **docker 1.21.0 or older is required** for the docker configuration to work.
-Note: The first command (sudo curl) is just an example. You should visit the link provided on that page to learn
-what the latest docker-compose version is an download it.
-
-Note: [This alternative installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04)
- could be of help if you run into any problems.
-
-Install Git.
-------------
-    sudo apt-get install git
-    
 TL:DR; (For experienced users)
 -------
 Install Ubuntu Server. Update and install required packages:
@@ -65,11 +51,6 @@ Install Ubuntu Server. Update and install required packages:
     
 Add docker privileges to the current user:
 
-    sudo usermod -aG docker <USERNAME>
-    
-Install docker-compose:
-
-    sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-
-    
+    sudo usermod -aG docker $USER
+   
+Logout/login 
