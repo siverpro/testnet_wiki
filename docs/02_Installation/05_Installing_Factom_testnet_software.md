@@ -1,231 +1,148 @@
 [TOC]
 
-Downloading the latest factomd-version
+Configure Docker
 ------------------------------------
+In order to join the swarm, first ensure that your firewall rules allow access on the following ports. All swarm communications occur over a self-signed TLS certificate. Due to the way iptables and docker work you cannot use the `INPUT` chain to block access to apps running in a docker container as it's not a local destination but a `FORWARD` destination. By default when you map a port into a docker container it opens up to `any` host. To restrict access we need to add our rules in the `DOCKER-USER` chain [reference](https://docs.docker.com/network/iptables/).
 
-First we need to make a folder to host the files; we will name it factom
-and put it in your /home-directory.
+- TCP port `2376` _only to_ `54.171.68.124` for secure Docker engine communication. This port is required for Docker Machine to work. Docker Machine is used to orchestrate Docker hosts. As this is a local service we use the `INPUT` chain.
 
-You can either do this via the graphical interface, or by using the terminal.
-In terminal ensure you are in your home directory (/home/user/) and execute
+In addition,  the following ports must be opened for factomd to function which we add to the `DOCKER-USER` chain:
+- `2222` to `54.171.68.124`, which is the SSH port used by the `ssh` container
+- `8088` to `54.171.68.124`, the factomd API port
+- `8090` to `0.0.0.0`, the factomd Control panel
+  - Keeping this open to the world is beneficial on testnet for debugging purposes
+- `8110` to the world, the factomd testnet port
 
-    mkdir factom
+An example using `iptables`:
+```
+sudo iptables -A INPUT ! -s 54.171.68.124/32 -p tcp -m tcp --dport 2376 -m conntrack --ctstate NEW,ESTABLISHED -j REJECT --reject-with icmp-port-unreachable
+sudo iptables -A DOCKER-USER ! -s 54.171.68.124/32  -i <external if> -p tcp -m tcp --dport 8090 -j REJECT --reject-with icmp-port-unreachable
+sudo iptables -A DOCKER-USER ! -s 54.171.68.124/32  -i <external if> -p tcp -m tcp --dport 2222 -j REJECT --reject-with icmp-port-unreachable
+sudo iptables -A DOCKER-USER ! -s 54.171.68.124/32  -i <external if> -p tcp -m tcp --dport 8088 -j REJECT --reject-with icmp-port-unreachable
+sudo iptables -A DOCKER-USER -p tcp -m tcp --dport 8110 -j ACCEPT
+```
 
-Now move into that folder by executing
+Don't forget to [save](https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands#saving-rules) the rules!
 
-    cd factom
+# Exposing the Docker Engine
 
-Execute
+## Choose one of the following 4
 
-    git clone https://github.com/FactomProject/communitytestnet.git
+### 1. Using `daemon.json` (recommended), works on all linux operating systems.
 
-The above command made a new directory. Move into it by executing
+You can configure the docker daemon using a default config file, located at `/etc/docker/daemon.json`. Create this file if it does not exist.
 
-    cd communitytestnet
+Example configuration:
+```
+{
+  "tls": true,
+  "tlscert": "/path/to/cert.pem",
+  "tlskey": "/path/to/key.pem",
+  "hosts": ["tcp://0.0.0.0:2376", "unix:///var/run/docker.sock"]
+}
+```
 
-Start the docker containers
----------------------------
+### 2. On RedHat
 
-Run the following command:
+Open (using `sudo`) `/etc/sysconfig/docker` in your favorite text editor.
 
-    docker pull emyrk/factomd_testnet_community:latest
+Append `-H=unix:///var/run/docker.sock -H=0.0.0.0:2376 --tls --tlscert=<path to cert.pem> --tlskey=<path to key.pem>` to the pre-existing OPTIONS
 
-And then:
+Then, `sudo service docker restart`.
 
-    docker-compose up -d
+### 3. Using `systemd`
 
-Adding a configuration file to the docker
------------------------------------------
+Run `sudo systemctl edit docker.service`
 
-Run the following commands:
+Edit the file to match this:
 
-    cp factomd.conf.EXAMPLE factomd.conf
+```
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2376 --tls --tlscert <path to cert.pem> --tlskey <path to key.pem>
+```
 
-and:
+Then reload the configuration:
+`sudo systemctl daemon-reload`
 
-    docker run --rm -v ${PWD}/factomd.conf:/source -v communitytestnet_factomd_volume:/destination busybox /bin/cp /source /destination/m2/factomd.conf
+and restart docker:
 
-Start the Factom software (factomd)
------------------------------------
+`sudo systemctl restart docker.service`
 
-By executing the following command the software is started, and your
-node will join the factom network as a follower node:
+### 4. I don't want to use a process manager
 
-    docker exec factomd_node bash /root/bin/start.sh
+You can manually start the docker daemon via:
 
-Run this command to ensure that factomd is running:
+```sudo dockerd -H=unix:///var/run/docker.sock -H=0.0.0.0:2376 --tlscert=<path to cert.pem> --tlskey=<path to key.pem>```
 
-    docker exec factomd_node ps -aux | grep factomd
+# Create the FactomD volumes
+Factomd relies on two volumes,`factom_database` and `factom_keys`. Please create these before joining the swarm.
 
-If you get a similar response as shown below everything is OK, and
-you may continue to the next step.
+1. `docker volume create factom_database`
+2. `docker volume create factom_keys`
 
-    root        13 14.5  0.5 475804 44764 ?        Sl   21:27   0:01 /root/bin/factomd -faulttimeout=120 -startdelay=600 -network=CUSTOM -customnet=fct_community_test -blktime=600 -debugconsole=remotehost:8093
-Opening the appropriate ports on your network
----------------------------------------------
+These volumes will be used to store information by the `factomd` container.
 
-The following ports needs to be forwarded to your physical/virtual server
-running the authority server:
+If you already have a synced node and would like to avoid resyncing, run:
 
-- 8110: Peer (other nodes) discovery port
-- 8220: SSH access for Factom developers/testnet coordinator(s) (ability to
-remotely control docker for debugging and restart-purposes)
-- 8090: Your node control panel
+`sudo cp -r <path to your database> /var/lib/docker/volumes/factom_database/_data`.
 
-The process for forwarding/opening the ports are different for each router/
-system, and you should consult your router’s (or VPS’) documentation to figure out
-how to achieve this.
+If you used the old docker setup your database will most likely be in `/var/lib/docker/volumes/communitytestnet_factomd_volume/_data/m2/`
 
-Note: In most routers this is done by logging in to its control panel, navigating to «port forwarding» and
-adding rules that forwards the appropriate ports to the internal IP of your server (External port 8110 ->
-internal port 8110 -> local IP of server).
+The directory in `_data` after the copy should be `custom-database`, as the volume is mounted at `$HOME/.factom/m2`.
 
-To test that the port forwarding was successful and that your ports are now
-exposed to the internet, try the following commands
+In addition, please place your `factomd.conf` file in `/var/lib/docker/volumes/factom_keys/_data`. This file can also be found in `/var/lib/docker/volumes/communitytestnet_factomd_volume/_data/m2/`.
 
-    nc PUBLIC_IP 8110
+# Join the Docker Swarm
 
-(should yield text like «network version/type/lenght)
+Finally, to join the swarm:
+```
+docker swarm join --token SWMTKN-1-0bv5pj6ne5sabqnt094shexfj6qdxjpuzs0dpigckrsqmjh0ro-87wmh7jsut6ngmn819ebsqk3m 54.171.68.124:2377
 
-and
+```
 
-    nc PUBLIC_IP 8220
+As a reminder, joining as a worker means you have no ability to control containers on another node.
 
-(should output SSH-2.0-OpenSSH(...))  
-Note: To obtain your public IP just google «what is my IP».
+Once you have joined the network, you will be issued a control panel login by Flying_Viking or a Factom employee after messaging Flying Viking or one of the Factom engineers on discord. You should private message the following for **each** node:
+- NodeID (`docker info | grep NodeID`)
+- IP Address
+- Docker engine listening port (`2376`)
 
-Static IP-address requirement
------------------------------
+**Only accept logins at https://testnet.federation.factomd.com/. Any other login endpoints are fraudulent and not to be trusted.**
 
-The Factom firewall rules require that Authority servers has a static IP, so if you
-are applying for running an Authority node from home you will need to request to
-get a static IP address from your internet service provider (ISP).  
-Note: a «normal» IP address (dynamic) provided by an ISP often changes at set intervals, which would
-make it unsuitable for the purpose of logging in remotely.
+# Starting FactomD Container
 
-Creating a Factom blockchain ID
--------------------------------
+There are two means of launching your `factomd` instance:
 
-To be able to join the test net as an authority server or an audit server you will
-need a «personal» server identity. This is done by executing some special
-commands that tells your factom node to generate a new ID.
+### From the Docker CLI (recommended and better tested)
 
-**Important: After starting the node for the first time (start.sh) you should wait until
-it has fully synced with the rest of the net before you interact with the blockchain in the following steps.
-Verify via control panel at :8090 ("Node sync status 1: 100%"). This could take hours.**
+Run this command _exactly_: `docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v5.0.0-alpine -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
+`
 
-Generating the ID requires you to have two terminal windows open. One will be
-used for hosting the factom wallet while the other is used for inputting the
-appropriate commands
+### From the Portainer UI
 
-![Image 1](Pasted1.png)
+Once you have logged into the [control panel](https://testnet.federation.factomd.com/), please ensure your node is selected in the top left dropdown menu.
 
-In the first window launch the Factom wallet:
+Then, click `containers > add container`.
 
-    docker exec -it factomd_node factom-walletd
+**:heavy_exclamation_mark: These instructions must be followed exactly, otherwise you risk being kicked from the authority set. :heavy_exclamation_mark:**
 
-Then move along to the second terminal window.
-All further commands will be executed from this window.
+1. Name your container `factomd`.
 
+2. Enter the image name `factominc/factomd:v5.0.0-alpine`
 
-If you have been issued a Test Credit (TC) address, import it now:
+3. Mark additional ports `8088:8088`, `8110`:`8110`, `8090:8090`.
 
-    docker exec factomd_node factom-cli importaddress EsXXXXXXXX
+4. Do _not_ modify access control.
 
-If you already have a TC address, you may skip the following section.
+5. Either this command for the command:  `-broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf`or your own flags. But be careful!
 
-------
+6. Click "volumes", and map `/root/.factom/m2` to `factom_database`, and `/root/.factom/private` to `factom_keys`.
 
-## New Test Credit Address
-If you don't have a Test Credit address yet, you have to generate a new one, fund it by using
-the Faucet, confirm the funding and then continue installation.
+7. Click "labels" and add a label `name:name` = `value:factomd`
 
-Generate new TC address:
+8. Click "deploy the container"
 
-    docker exec factomd_node factom-cli newecaddress
+9. You are done!
 
-Take note of your address, then visit the Factoid Faucet to fund your address, either under the
-["Before you start"](Before_you_start/Faucet)-section or
-[this direct link](https://faucet.factoid.org).
-
-Before you continue, please verify that your address has been funded:
-
-    docker exec factomd_node factom-cli balance ECXXXXXXXXXXXXXX
-
-Note: Use the public address. The amount of credits in the TC-account will be displayed.
-Your wallet has to be fully synced before your credits will appear in your balance.
-You can verify your sync status from the Control Panel.
-
------
-
-Run the following command to generate a new Testoid (TTS) address:
-
-    docker exec factomd_node factom-cli newfctaddress
-
-Export the addresses you generated in the previous steps:
-
-    docker exec factomd_node factom-cli exportaddresses
-
-Note: This will export the SECRET/PRIVATE addresses associated with the TC/TTS-addresses
-
-![Image 2](Pasted2.png)
-
-Execute the following command to generate an ID, public/private keys:
-
-    docker exec factomd_node serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f
-
-Note: The private TC address should be used.
-
-Copy/write down the output from the previous command (take a mental note
-of where the public key and Root chain information is presented).
-
-![Image 3](Pasted3.png)
-
-The previous command also (by magic) created a script for publishing your
-new ID to the blockchain. Run this script by executing the following commands:
-
-    docker exec factomd_node chmod 766 /root/create.sh
-
-and;
-
-    docker exec factomd_node bash /root/create.sh
-
-Verify that your ID is written to the testnet blockchain by executing:
-
-    docker exec factomd_node factom-cli get allentries YOUR-ROOT-CHAIN
-
-Example:
-
-    docker exec factomd_node factom-cli get allentries 888888c0754c3218a32d12004fd9d30590ccbc22954f8688e1a9d628f943be80
-
-Executing this command should yield an output containing:
-
-«EntryHash/ExtID/content», while «missing chain head» indicates
-that your ID failed to register in the blockchain.  
-Note: if this commands fails, what a minute and then try again.
-
-With your ID registered in the testnet blockchain you may now modify your
-factom node to utilize this new identity by running this command:
-
-    docker exec factomd_node bash -c "sed -i '/Node Identity Information/q' /root/.factom/m2/factomd.conf && grep Identity -A 2 create.conf >> /root/.factom/m2/factomd.conf"
-
-The last step is to reboot your node; which will make it rejoin the testnet with
-the correct identification:
-
-    docker exec factomd_node bash /root/bin/stop.sh
-
-and
-
-    docker exec factomd_node bash /root/bin/start.sh
-
-Informing Factom/community coordinator that you are ready to be promoted to audit/authority server
---------------------------------------------------------------------------------------------------
-
-When all the steps above has been successfully executed, you are now ready
-to be promoted to an audit or federated server. Note that your server should be
-running continuously from this point forward, and any restarts/downtime should be
-coordinated with Factom/testnet coordinator.
-Note: If you restart your computer/server the docker containing the factom node/authority server will
-automatically relaunch, and you should not be
-
-To be promoted you need to fill out the following [form](https://docs.google.com/forms/d/e/1FAIpQLSczJm-U7P2AFh3nDikSrfgnUG3E4fjExNE7AH_RL3nDdHg9_g/viewform).
+### NOTE: The Swarm cluster is still experimental, so please pardon our dust! If you have an issues, please contact ian at factom dot com.
