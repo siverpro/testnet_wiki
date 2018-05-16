@@ -25,6 +25,7 @@ sudo iptables -A DOCKER-USER -p tcp -m tcp --dport 8110 -j ACCEPT
 Don't forget to [save](https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands#saving-rules) the rules!
 
 # Exposing the Docker Engine
+Get cert.pem and key.pem from [factomd-testnet-toolkit/tls](https://github.com/FactomProject/factomd-testnet-toolkit/tree/master/tls) and note the path to these. 
 
 ## Choose one of the following 4
 
@@ -105,7 +106,7 @@ As a reminder, joining as a worker means you have no ability to control containe
 
 Once you have joined the network, you will be issued a control panel login by Flying_Viking or a Factom employee after messaging Flying Viking or one of the Factom engineers on discord. You should private message the following for **each** node:
 - NodeID (`docker info | grep NodeID`)
-- IP Address
+- IP Address (`ifconfig <external if>`)
 - Docker engine listening port (`2376`)
 
 **Only accept logins at https://testnet.federation.factomd.com/. Any other login endpoints are fraudulent and not to be trusted.**
