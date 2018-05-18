@@ -24,6 +24,7 @@ sudo iptables -A DOCKER-USER -p tcp -m tcp --dport 8110 -j ACCEPT
 
 Don't forget to [save](https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands#saving-rules) the rules!
 
+
 # Exposing the Docker Engine
 Get cert.pem and key.pem from [factomd-testnet-toolkit/tls](https://github.com/FactomProject/factomd-testnet-toolkit/tree/master/tls) and note the path to these. 
 
@@ -94,6 +95,7 @@ The directory in `_data` after the copy should be `custom-database`, as the volu
 
 In addition, please place your `factomd.conf` file in `/var/lib/docker/volumes/factom_keys/_data`. This file can also be found in `/var/lib/docker/volumes/communitytestnet_factomd_volume/_data/m2/`.
 
+
 # Join the Docker Swarm
 
 Finally, to join the swarm:
@@ -115,12 +117,12 @@ Once you have joined the network, you will be issued a control panel login by Fl
 
 There are two means of launching your `factomd` instance:
 
-### From the Docker CLI (recommended and better tested)
+## From the Docker CLI (recommended and better tested)
 
 Run this command _exactly_: `docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v5.0.0-alpine -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
 `
 
-### From the Portainer UI
+## From the Portainer UI
 
 Once you have logged into the [control panel](https://testnet.federation.factomd.com/), please ensure your node is selected in the top left dropdown menu.
 
@@ -146,4 +148,4 @@ Then, click `containers > add container`.
 
 9. You are done!
 
-### NOTE: The Swarm cluster is still experimental, so please pardon our dust! If you have an issues, please contact ian at factom dot com.
+**NOTE: The Swarm cluster is still experimental, so please pardon our dust! If you have an issues, please contact ian at factom dot com.**
