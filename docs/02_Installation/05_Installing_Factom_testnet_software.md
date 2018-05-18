@@ -43,7 +43,11 @@ Example configuration:
   "hosts": ["tcp://0.0.0.0:2376", "unix:///var/run/docker.sock"]
 }
 ```
+Then reload and restart:
 
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker.service
+    
 ### 2. On RedHat
 
 Open (using `sudo`) `/etc/sysconfig/docker` in your favorite text editor.
