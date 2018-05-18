@@ -93,7 +93,9 @@ If you used the old docker setup your database will most likely be in `/var/lib/
 
 The directory in `_data` after the copy should be `custom-database`, as the volume is mounted at `$HOME/.factom/m2`.
 
-In addition, please place your `factomd.conf` file in `/var/lib/docker/volumes/factom_keys/_data`. If you don't have this file, create a new file in the mentioned directory and copy/paste the contents found [here](https://raw.githubusercontent.com/FactomProject/factomd/communitynet-m3/factomd.conf.EXAMPLE). This file can also be found in `/var/lib/docker/volumes/communitytestnet_factomd_volume/_data/m2/` if you ran a testnet node on the previous setup.
+In addition, please place your `factomd.conf` file in `/var/lib/docker/volumes/factom_keys/_data`. 
+
+If you don't have this file, create a new file called `factomd.conf` in the mentioned directory and copy/paste the contents found [here](https://raw.githubusercontent.com/FactomProject/factomd/communitynet-m3/factomd.conf.EXAMPLE). This file can also be found in `/var/lib/docker/volumes/communitytestnet_factomd_volume/_data/m2/` if you ran a testnet node on the previous setup.
 
 
 # Join the Docker Swarm
