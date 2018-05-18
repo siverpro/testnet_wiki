@@ -85,7 +85,7 @@ Factomd relies on two volumes,`factom_database` and `factom_keys`. Please create
 
 These volumes will be used to store information by the `factomd` container.
 
-If you already have a synced node and would like to avoid resyncing, run:
+If you start the server without a database it will try and download it off the network. If you already have a synced node and would like to avoid resyncing, run:
 
 `sudo cp -r <path to your database> /var/lib/docker/volumes/factom_database/_data`.
 
