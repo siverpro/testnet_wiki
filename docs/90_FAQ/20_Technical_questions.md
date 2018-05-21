@@ -17,23 +17,15 @@ Your node needs to be fully synced before you can see any transactions to or fro
 
 This error often happens because the command to generate an ID and public and private keys is missing flags at the end of the command. When you run:
 
-`docker exec factomd_node serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f`
+`docker exec factomd serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f`
 
 Be sure to include '-n create -f'
-
-
-## Why do I get an error when adding the configuration file to the docker?
-
-This can be caused by using an older pdf version of the installation instructions where an extra space is inserted before 'destination/m2/factomd.conf'. Try running the below command:
-
-`docker run --rm -v ${PWD}/factomd.conf:/source -v communitytestnet_factomd_volume:/destination busybox /bin/cp /source /destination/m2/factomd.conf`
-
 
 ## Why do I get an error trying to modify my node to utilize its new identity?
 
 This can be caused by using an older pdf version of the installation instructions where it seems there is a line break in the command right after 'A-2'. This gives the error 'no such command as create.conf'. However, the command is one single line. Try running the command:
 
-`docker exec factomd_node bash -c "sed -i '/Node Identity Information/q' /root/.factom/m2/factomd.conf && grep Identity -A 2 create.conf >> /root/.factom/m2/factomd.conf"`
+`docker exec factomd bash -c "sed -i '/Node Identity Information/q' /root/.factom/m2/factomd.conf && grep Identity -A 2 create.conf >> /root/.factom/m2/factomd.conf"`
 
 
 ## How come I get an error about not being able to connect to the docker when adding the configuration file?
@@ -64,15 +56,12 @@ In the daemon.json file insert and save:
 After saving, run the following commands:
 
 ```
-docker-compose down
-
 sudo service docker stop
 
 sudo ufw reload
 
 sudo service docker start
 
-docker-compose up -d
 ```
 
 ## The "invalid character 'S' looking for beginning of value" error message
@@ -87,5 +76,5 @@ If you experience the error
     
 It is recommended to delete your database and let your node synchronize from scratch. To delete the database execute
     
-    docker exec factomd_node rm -rf .factomd/m2/FastBoot_CUSTOM_v7.db .factomd/m2/FastBoot_CUSTOM_v8.db .factomd/m2/custom-database
+    docker exec factomd rm -rf .factomd/m2/FastBoot_CUSTOM_v7.db .factomd/m2/FastBoot_CUSTOM_v8.db .factomd/m2/custom-database
 
