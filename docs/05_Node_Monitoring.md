@@ -1,9 +1,8 @@
 [TOC]
 ## Individual Node Monitoring Service
-The Factoid Authority (TFA) has set up individual node monitoring which can be used by everyone for free. This includes push notifications for stalled or offline nodes. 
-* A web interface showing current active nodes is available at [http://factoid.org/](http://factoid.org/ "http://factoid.org/").
-* For Push-notifications for offline and/or stalled node the Telegram-service is utilized. Join The Factoid Authority's channel here (link: [https://t.me/joinchat/AAAAAE2-0U-d39NlScamUQ](https://t.me/joinchat/AAAAAE2-0U-d39NlScamUQ "https://t.me/joinchat/AAAAAE2-0U-d39NlScamUQ")), and ensure your telegram username is the same as your Discord handle. If you mute the channel you will still get push notifications for your own node as your username is correct.
-* The TFA Telegram monitoring-bot is set to override the mute-function in Telegram if your personal server goes offline; so by muting the channel you will only get your own alerts and not everyone else’s.
+The Factoid Authority (TFA) and De Facto has set up individual node monitoring which can be used by everyone for free. This includes push notifications for stalled or offline nodes. 
+* A web interface showing current active nodes is available at [http://fct.tools/](http://fct.tools/).
+* For Push-notifications for offline and/or stalled node a Telegram-service is utilized. Details about how to join can be found at http://fct.tools
 
 ## Testnet load
 A working group in the testnet organizational structure is responsible for developing monitoring tools which polls and displays current and historical usage of the Factom Community Testnet blockchain. Various statistics and graphs for the testnet is displayed here: ([http://testnet.factom-monitoring.com](http://testnet.factom-monitoring.com)). 
@@ -16,9 +15,13 @@ The current blockchain WPS (Writes Per Second) is shown at the top right corner,
 
 Factomd comes with a few ways to monitor your node's health. The most obvious tool is the control panel found at localhost:8080. Information about the control panel can be found here [Factomd control panel](https://docs.factom.com/#the-factomd-control-panel)
 
-Factomd also comes with more monitoring tools that are included in this docker setup called Prometheus and Grafana.
-We will focus on Grafana, as this is the visualization tool that is most usful.
-To see Grafana, visit http://localhost:3001.
+Factomd also used to come with more monitoring tools called Prometheus and Grafana.
+If you want to include them in your package, you can run Grafana and Prometheus docker images:
+
+    docker run -d --name=grafana -p 3001:3001 grafana/grafana
+    docker run -d --name=prometheus -p 9090:9090 prom/prometheus
+    
+To see Grafana, open http://localhost:3001
 
 ## Setting up Grafana
 
@@ -30,9 +33,6 @@ To see Grafana, visit http://localhost:3001.
     - Ensure Default is checked
     - URL: http://prometheus:9090
 4. Once all the fields are put in, click "Save and Test". You should be greeted by "Data source is working".
-If you encounter an error, here are some debug steps before asking for assistance.
-    - Ensure Prometheus is running `docker ps | grep prometheus`
-    - If there are no results, then you did not successfully run `docker-compose up -d`. Try running `docker-compose down` then `docker-compose up -d`
 5. Now we have Prometheus as a datasource, let's get some graphs up. In the top left is the Grafana logo, click it, then dashboard, then import
     - Top Left > Dashboard > Import
 6. A preconfigured dashboard can be found here: https://grafana.com/dashboards/4482
@@ -40,6 +40,3 @@ If you encounter an error, here are some debug steps before asking for assistanc
     - Make sure to select your prometheus source we added earlier from the dropdown menu next to Prometheus
     - Click import and your dashboard is now viewable.
 7. Feel free to mess around and change things to your liking.
-
-
-
