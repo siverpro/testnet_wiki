@@ -4,14 +4,14 @@ Creating a Factom blockchain ID
 To be able to join the test net as an authority server or an audit server you will
 need a «personal» server identity.
 
-## Run a copy of factomd locally synced to the blockchain.
+### Run a copy of factomd locally synced to the blockchain.
 Note: You can edit some commands later if you want to use a different node, like the courtesy node, but that is less reliable.
 
-## Download and build server identity program. The following are directions for linux.
+### Download and build server identity program. The following are directions for linux.
 
-### Install git, golang 1.10, and glide. Set the proper $GOPATH environment variable.
+#### Install git, golang 1.10, and glide. Set the proper $GOPATH environment variable.
 
-### Clone the serveridentity program:
+#### Clone the serveridentity program:
 
 - `mkdir -p $GOPATH/src/github.com/FactomProject/`
 - `cd $GOPATH/src/github.com/FactomProject/`
