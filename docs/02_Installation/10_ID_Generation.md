@@ -2,104 +2,34 @@ Creating a Factom blockchain ID
 -------------------------------
 
 To be able to join the test net as an authority server or an audit server you will
-need a «personal» server identity. This is done by executing some special
-commands that tells your factom node to generate a new ID.
+need a «personal» server identity.
 
-**Important: After starting the node for the first time you should wait until
-it has fully synced with the rest of the net before you interact with the blockchain in the following steps.
-Verify via control panel at :8090 ("Node sync status 1: 100%"). This could take hours.**
+## Run a copy of factomd locally synced to the blockchain.
+Note: You can edit some commands later if you want to use a different node, like the courtesy node, but that is less reliable.
 
-Generating the ID requires you to have two terminal windows open. One will be
-used for hosting the factom wallet while the other is used for inputting the
-appropriate commands
+## Download and build server identity program. The following are directions for linux.
 
-![Image 1](Pasted1.png)
+### Install git, golang 1.10, and glide. Set the proper $GOPATH environment variable.
 
-In the first window launch the Factom wallet:
+### Clone the serveridentity program:
 
-    docker exec -it factomd factom-walletd
-
-Then move along to the second terminal window.
-All further commands will be executed from this window.
-
-If you have been issued a Test Credit (TC) address, import it now:
-
-    docker exec factomd factom-cli importaddress EsXXXXXXXX
-
-If you already have a TC address, you may skip the following section.
-
-------
-
-## New Test Credit Address
-If you don't have a Test Credit address yet, you have to generate a new one, fund it by using
-the Faucet, confirm the funding and then continue installation.
-
-Generate new TC address:
-
-    docker exec factomd factom-cli newecaddress
-
-Take note of your address, then visit the Factoid Faucet to fund your address.
-
-Before you continue, please verify that your address has been funded:
-
-    docker exec factomd factom-cli balance ECXXXXXXXXXXXXXX
-
-Note: Use the public address. The amount of credits in the TC-account will be displayed.
-Your wallet has to be fully synced before your credits will appear in your balance.
-You can verify your sync status from the Control Panel.
-
------
-
-Run the following command to generate a new Testoid (TTS) address:
-
-    docker exec factomd factom-cli newfctaddress
-
-Export the addresses you generated in the previous steps:
-
-    docker exec factomd factom-cli exportaddresses
-
-Note: This will export the SECRET/PRIVATE addresses associated with the TC/TTS-addresses
-
-![Image 2](Pasted2.png)
-
-Execute the following command to generate an ID, public/private keys:
-
-    docker exec factomd serveridentity full elements EsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -n create -f
-
-Note: The private TC address should be used.
-
-Copy/write down the output from the previous command (take a mental note
-of where the public key and Root chain information is presented).
-
-![Image 3](Pasted3.png)
-
-The previous command also (by magic) created a script for publishing your
-new ID to the blockchain. Run this script by executing the following commands:
-
-    docker exec factomd chmod 766 /root/create.sh
-
-and;
-
-    docker exec factomd bash /root/create.sh
-
-Verify that your ID is written to the testnet blockchain by executing:
-
-    docker exec factomd factom-cli get allentries YOUR-ROOT-CHAIN
-
-Example:
-
-    docker exec factomd factom-cli get allentries 888888c0754c3218a32d12004fd9d30590ccbc22954f8688e1a9d628f943be80
-
-Executing this command should yield an output containing:
-
-«EntryHash/ExtID/content», while «missing chain head» indicates
-that your ID failed to register in the blockchain.  
-Note: if this commands fails, what a minute and then try again.
-
-With your ID registered in the testnet blockchain you may now modify your
-factom node to utilize this new identity by running this command:
-
-    docker exec factomd bash -c "sed -i '/Node Identity Information/q' /root/.factom/m2/factomd.conf && grep Identity -A 2 create.conf >> /root/.factom/m2/factomd.conf"
-
-The last step is to reboot your node; which will make it rejoin the testnet with
-the correct identification.
+    - `mkdir -p $GOPATH/src/github.com/FactomProject/`
+    - `cd $GOPATH/src/github.com/FactomProject/`
+    - `git clone https://github.com/FactomProject/serveridentity.git`
+    - `cd serveridentity`
+    - `glide install`
+    - `go install`
+    - `cd signwithed25519`
+    - `go install`
+    - Copy $GOPATH/bin/serveridentity to an offline computer with a thumbdrive
+    - On the offline computer run `./serveridentity full elements Es2bTzUy71xg24XVQNV7xcsJwDxRofeV84NEiRJ49RV7HmcaUEUV -n=important -f`
+    - It will create the files important.conf and important.sh
+    - Record the private keys printed out to the screen on paper or long term storage.  These are used to control your identity in the future. Level 4 is the highest security and level 1 will be used to do more operations.
+    - Copy the file important.sh, important.conf back to a thumbdrive to run on an online computer. This will be your `factomd.conf`
+    - Make sure factomd is running
+    - Run factom-walletd in a terminal window (use -s=courtesy-node.factom.com:80 if you don’t have a full node)
+    - The factom-cli commands in important.sh need to be directed to the courtesy-node. Change all lines with `factom-cli …` now read, `factom-cli -s=courtesy-node.factom.com:80 ...` (or whatever factomd you are using)
+    - Import the EC address to your wallet: `factom-cli importaddress Es2bTzUy71xg24XVQNV7xcsJwDxRofeV84NEiRJ49RV7HmcaUEUV`
+    - Check the balance `factom-cli listaddresses`
+    - Run the important.sh script.
+    - Check the explorer that the new identity chains were created 10 minutes later
