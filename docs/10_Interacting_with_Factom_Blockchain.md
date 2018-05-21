@@ -8,7 +8,7 @@ account balances pulled and APIs interfaced.
 
 A full list of CLI (command line interface) commands is available by executing:
 
-    docker exec factomd_node factom-cli help
+    docker exec factomd factom-cli help
 
 All factomd commands have to be prefaced by: `docker exec factomd_node factom-cli`
 
