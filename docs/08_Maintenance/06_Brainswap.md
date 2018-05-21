@@ -1,8 +1,6 @@
 [TOC]
-**Caution**: This feature has not been fully tested, although some members have successfully performed this on the testnet already. Worst case scenario is that we test the network's faulting ability.
-
 **Prequisites:**
-* You need to have an authority node to test this on, and you need to have at least 1 standby node that is listed on factoid.org.
+* You need to have an authority node to test this on, and you need to have at least 1 standby node.
 * You should announce in #testnet-restarts when you are performing the swap/transfer, questions can be discussed in #testnet-development. 
 
 # Brainswap
@@ -92,7 +90,7 @@ __Modify config file__ -- You must edit the config file in the docker container.
 
 
 ```
-docker exec -it factomd_node bash
+docker exec -it factomd bash
 ```
 
 __If you want to use vim__
@@ -113,3 +111,5 @@ nano /root/.factom/m2/factomd.conf
 Edit the files per the instructions above.  
 Save the file: ```ctrl+O```  
 Exit nano: ```ctrl+x```
+
+With the new docker swarm setup, the config files can also be located at `/var/lib/docker/volumes/factom_keys/_data`
