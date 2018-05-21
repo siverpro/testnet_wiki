@@ -17,12 +17,6 @@ Install Docker
 Note: [This alternative installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
  could be of help if you run into any problems.
 
-First you'll need curl for the docker installation. It should already be included as default in Ubuntu 18.04, but if it isn't then installing curl is done as follows:
-
-    sudo apt-get install curl
-
-You will be prompted for your linux account password here.  
-
 Docker is installed using a terminal window. Open one, and then install the docker.io package:
 
     sudo apt-get install docker.io
