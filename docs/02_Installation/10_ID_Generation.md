@@ -1,8 +1,12 @@
 Creating a Factom blockchain ID
 -------------------------------
 
-To be able to join the test net as an authority server or an audit server you will
-need a «personal» server identity.
+To be able to join the test net as an authority server you will need a «personal» server identity.
+
+### Requirements: 
+- Entry Credits
+- Access to a full Factomd node, factom-walletd, and factom-cli
+- GoLang
 
 ### Run a copy of factomd locally synced to the blockchain.
 Note: You can edit some commands later if you want to use a different node, like the courtesy node, but that is less reliable.
