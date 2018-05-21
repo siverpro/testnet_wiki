@@ -4,15 +4,13 @@ What is this Factom community test net?
 
 To be able to understand how the Factom community test net (FCN) will be put together, one first need some basic knowledge about the basic design of the Factom blockchain.
 
-The Factom blockchain consists of ordinary nodes (like the one that runs as part of the Federation Wallet), as well as «Federated Servers» and «Audit Servers». These two last categories lumped together is referred to as the «Authority Set».
+The Factom blockchain consists of ordinary nodes (like the one that runs as part of the Federation Wallet), as well as «Federated Servers» and «Audit Servers». These two last categories is referred to as the «Authority Set».
 
-Currently the Factom main net (the production environment) consists of 18 Authority servers (9 Federated- and 9 Audit-servers), all run and controlled by Factom.
+Initially the Factom main net (the production environment) consisted of 18 Authority servers (9 Federated- and 9 Audit-servers), all run and controlled by Factom.
 
-Factom’s last and upcoming milestone (M3) will distribute the control of the Authority set to people/entities/companies that will run the servers on a for-profit-basis.
+Factom’s Milestone 3 (M3) distributes the control of the Authority set to entities that will run the servers on a for-profit-basis. There will be 65 authority nodes eventually run by 65 different entities.
 
 The FCN is a parallel network to Factom’s main net, and hosted on servers/nodes provided by the community.
-
-As of March 2018 the members of the Factom community has pledged to host more than 60 Authority test servers.
 
 The test net software/code will for all practical purposes be identical to the one used on the main net, but it will be configured to only interact with the test net blockchain.
 
@@ -22,10 +20,8 @@ A (large) amount of Testoids (TTS) will be issued to everyone participating in t
 Why a community test net?
 -------------------------
 
-Currently Factom (and their customers) are running their own private test nets. For
-Factom these are very useful for testing new releases of the software, and their
-customers may use their test nets to learn how to operate without spending real entry
-credits or broadcasting to the world that they are currently working their way into the
+Currently Factom (and their customers) are running their own private test nets. For Factom these are very useful for testing new releases of the software, and their
+customers may use their test nets to learn how to operate without spending real entry credits or broadcasting to the world that they are currently working their way into the
 Factom ecosystem.
 
 Factom’s current, private, test nets are hosted «in house» with Factom and are not
@@ -41,7 +37,7 @@ provide a good opportunity for those who want to interact with the protocol for 
 purposes.
 
 ----
-How does one proceed to join this FCN-thing then?
+How does one proceed to join this testnet then?
 -------------------------------------------------
 
 Well, first of all you will have to decide if you are going to run a server that will be part
