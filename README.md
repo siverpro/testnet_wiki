@@ -12,4 +12,4 @@ https://help.github.com/articles/creating-a-pull-request/
 Members of the Documentation workgroup can be granted access to this repository and make changes directly.
 
 ### 3. Contact the workgroup chair (only for minor changes or well-prepared material, such as documentation from other working groups)
-Join our Discord and contact the Workgroup Chair directly in the Documentation workgroup.
+Join our [Discord](https://discord.gg/q75MJGJ) and contact the Workgroup Chair directly in the Documentation workgroup.
