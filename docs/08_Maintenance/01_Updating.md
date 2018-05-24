@@ -7,7 +7,7 @@ Never update your node without coordinating with a Testnet Administrator.
 
 Updating your node basically just means pulling an updated docker build from the Factom repo and restarting your node:
 
-    docker pull factomd
-    docker kill factomd
+    docker stop factomd
+    docker rm factomd
     
 Now run the startup command again.
