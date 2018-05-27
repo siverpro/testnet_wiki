@@ -6,24 +6,24 @@ Notes:
 ------
 - Replace your appropriate username
 - Replace the IP of your hosts as appropriate
-- Commands 1+2 is run on "old" host ("Host A").
-- Commands 3+4 are run on your "new" host ("Host B").
+- The docker volumes need to have already been created.
 
 <strong>IMPORTANT: before starting your factomd-node on your "new" host ("Host B"), you MUST stop the factomd-node on your "old" host ("Host A").</strong>
 
+#### Option 1: SINGLE COMMAND
 
-1. Copy the file from docker A to host A -- (docker cp)
+This can be used if you have root access to the remote host.
+ 
+On your "old" host, copy the file from host A to host B -- (scp)
 
-        docker cp factomd:/root/.factom/m2/factomd.conf .
-
-2. Copy the file from host A to host B -- (scp)
-
-        scp factomd.conf USERNAME@IP-B:~/factomd.conf
-
-3. Create the necessary directory inside the docker (mkdir)
+    scp /var/lib/docker/volumes/factom_keys/_data/factomd.conf root@REMOTE-IP:/var/lib/docker/volumes/factom_keys/_data/factomd.conf
         
-        docker exec factomd mkdir /root/.factom /root/.factom/m2
+#### Option 2: Two-step
 
-4. Copy the file from host B to docker B -- (docker cp)
+1. On your "old" host, copy the file from host A to host B -- (scp)
+        
+        scp /var/lib/docker/volumes/factom_keys/_data/factomd.conf USER@REMOTE-IP:/home/USER/factomd.conf
 
-        docker cp factomd.conf factomd_node:/root/.factom/m2/factomd.conf
+4. On your "new" host, place the file in the appropriate folder:
+
+        cp factomd.conf /var/lib/docker/volumes/factom_keys/_data/factomd.conf
