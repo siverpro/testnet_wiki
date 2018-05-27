@@ -114,7 +114,7 @@ There are two means of launching your `factomd` instance:
 
 ## From the Docker CLI (recommended and better tested)
 
-Run this command _exactly_: `docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v5.0.0-alpine -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
+Run this command _exactly_: `docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v5.1.0-alpine -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
 `
 
 ## From the Portainer UI
@@ -127,7 +127,7 @@ Then, click `containers > add container`.
 
 1. Name your container `factomd`.
 
-2. Enter the image name `factominc/factomd:v5.0.0-alpine`
+2. Enter the image name `factominc/factomd:v5.1.0-alpine`
 
 3. Mark additional ports `8088:8088`, `8110`:`8110`, `8090:8090`.
 
