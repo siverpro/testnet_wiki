@@ -26,7 +26,7 @@ Then reload and restart:
     sudo systemctl daemon-reload
     sudo systemctl restart docker.service
     
-By default there is already a listen host set in the systemd service file and needs to be overridden:
+If you get an error here, the reason is probalby that by default there is already a listen host set in the systemd service file and needs to be overridden:
 
     sudo systemctl edit docker.service
     
@@ -36,6 +36,7 @@ Edit the file to match this:
     ExecStart=
     ExecStart=/usr/bin/dockerd
   
+Then reload and and try restarting.
 
 ### 2. On RedHat
 
