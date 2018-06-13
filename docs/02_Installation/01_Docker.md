@@ -11,4 +11,4 @@ server.
 The main support channel is in the Factom Community [Discord channel](https://discord.gg/Aft2Bg) (community-testnet -> #wg-support).
 
 If you are an experienced user you may skip these instructions, and head directly to
-the [QuickStart instructions on the Factom community testnet GitHub page](https://github.com/FactomProject/communitytestnet/blob/master/Quickstart.md).
+the [instructions on the factomd-testnet-toolkit GitHub page](https://github.com/FactomProject/factomd-testnet-toolkit).
