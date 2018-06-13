@@ -1,7 +1,7 @@
 [TOC]
 
-# Configure and run the Docker Engine
 ------------------------------------
+# Configure and run the Docker Engine
 There are a number of ways to run dockerd and two effectively mutually exclusive ways to configure dockerd. The ways to run dockerd are discussed below, but it is also important to understand the two ways that it can be configured.
 
 ## Exposing the Docker Engine
