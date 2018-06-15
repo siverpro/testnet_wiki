@@ -11,4 +11,5 @@ Updating your node basically just means pulling an updated docker build from the
     docker rm factomd
     
 Now run the startup command again, change the version to the up-to-date one at 'factominc/factomd:vX.X.X-alpine' in the line below:
+
 `docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v5.1.1-alpine -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf`
