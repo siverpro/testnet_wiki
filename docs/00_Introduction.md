@@ -54,7 +54,7 @@ function properly.
     who has a dedicated computer that satisfies the uptime requirement should chose
     this option.
 
-    Those who want to run an Authority server will need to fill out [this application](https://docs.google.com/forms/d/e/1FAIpQLSczJm-U7P2AFh3nDikSrfgnUG3E4fjExNE7AH_RL3nDdHg9_g/viewform), in addition it is highly recommended to join the factom community discord found [here](https://discord.gg/q75MJGJ)
+    Those who want to run an Authority server will need to fill out [this application](https://docs.google.com/forms/d/e/1FAIpQLSd-t33chnGOyLZ6kJ-QC-L0EgOExzY7GQ8y9e0I0E4AIbdKBQ/viewform), in addition it is highly recommended to join the factom community discord found [here](https://discord.gg/q75MJGJ)
 
 2. Participating as an ordinary node
 
