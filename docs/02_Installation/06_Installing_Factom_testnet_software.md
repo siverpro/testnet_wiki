@@ -137,7 +137,7 @@ docker swarm join --token SWMTKN-1-0bv5pj6ne5sabqnt094shexfj6qdxjpuzs0dpigckrsqm
 
 As a reminder, joining as a worker means you have no ability to control containers on another node.
 
-Once you have joined the swarm network, you will be issued a control panel login by the Testnet Adminstrator. Please submit this [form] (https://docs.google.com/forms/d/e/1FAIpQLSd-t33chnGOyLZ6kJ-QC-L0EgOExzY7GQ8y9e0I0E4AIbdKBQ/viewform) and a staff member will contact you as soon as possible.
+Once you have joined the swarm network, you will be issued a control panel login by the Testnet Adminstrator. Please submit this [form](https://docs.google.com/forms/d/e/1FAIpQLSd-t33chnGOyLZ6kJ-QC-L0EgOExzY7GQ8y9e0I0E4AIbdKBQ/viewform) and a staff member will contact you as soon as possible.
 
 **Only accept logins at https://testnet.federation.factomd.com/. Any other login endpoints are fraudulent and not to be trusted.**
 
