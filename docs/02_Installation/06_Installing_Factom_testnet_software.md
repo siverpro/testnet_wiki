@@ -5,7 +5,7 @@
 There are a number of ways to run dockerd and two effectively mutually exclusive ways to configure dockerd. The ways to run dockerd are discussed below, but it is also important to understand the two ways that it can be configured.
 
 ## Exposing the Docker Engine
-Get cert.pem and key.pem from [factomd-testnet-toolkit/tls](https://github.com/FactomProject/factomd-testnet-toolkit/tree/master/tls) and note the path to these. 
+Get cert.pem and key.pem from [factomd-testnet-toolkit/tls](https://github.com/FactomProject/factomd-testnet-toolkit/tree/master/tls) and note the path to these. (Remember to download the raw files).
 
 ## Choose one of the following options for configuring `dockerd`
 You can either use the `/etc/docker/daemon.json` file to specify `dockerd`
@@ -125,7 +125,7 @@ If you used the old docker setup your database will most likely be in `/var/lib/
 
 The directory in `_data` after the copy should be `custom-database`, as the volume is mounted at `$HOME/.factom/m2`.
 
-In addition, please place your `factomd.conf` file in `/var/lib/docker/volumes/factom_keys/_data`. This file can also be found in `/var/lib/docker/volumes/communitytestnet_factomd_volume/_data/m2/`.
+In addition, please place your `factomd.conf` file in `/var/lib/docker/volumes/factom_keys/_data`. This file can also be found in `/var/lib/docker/volumes/communitytestnet_factomd_volume/_data/m2/`. If you don't have one yet, you can download factom.conf.EXAMPLE from the [testnet toolkit repo](https://github.com/FactomProject/factomd-testnet-toolkit).
 
 # Join the Docker Swarm
 
