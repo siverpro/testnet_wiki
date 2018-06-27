@@ -4,8 +4,17 @@
 # Configure and run the Docker Engine
 There are a number of ways to run dockerd and two effectively mutually exclusive ways to configure dockerd. The ways to run dockerd are discussed below, but it is also important to understand the two ways that it can be configured.
 
-## Exposing the Docker Engine
-Get cert.pem and key.pem from [factomd-testnet-toolkit/tls](https://github.com/FactomProject/factomd-testnet-toolkit/tree/master/tls) and note the path to these. (Remember to download the raw files).
+## Store Docker Swarm certificate and key
+Make sure you store the Docker Swarm mainnet key and certificate on your system. The files can be found at [here](https://github.com/FactomProject/factomd-authority-toolkit/tree/master/tls)
+You can store these files in the directory /etc/docker for instance:
+```
+sudo mkdir -p /etc/docker
+sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/cert.pem -O /etc/docker/factom-mainnet-cert.pem
+sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/key.pem -O /etc/docker/factom-mainnet-key.pem
+sudo chmod 644 /etc/docker/factom-mainnet-cert.pem
+sudo chmod 440 /etc/docker/factom-mainnet-key.pem
+sudo chgrp docker /etc/docker/*.pem
+```
 
 ## Choose one of the following options for configuring `dockerd`
 You can either use the `/etc/docker/daemon.json` file to specify `dockerd`
