@@ -61,10 +61,10 @@ ChangeAcksHeight                      = 0
 
 This additional line is the brainswap logic. You will want to set the `ChangeAcksHeight` to some block height in the future (remember the block height on the control panel is the last saved height, not the current working height!). 
 
-The safe height is the one you see in the control panel +3. (localhost:8090).
+__The safe height is the one you see in the control panel + 4.__ (localhost:8090).
 If you know how to read the more detailed page, you can get away with a closer number.
 
-Once you set the `ChangeAcksHeight` to __DBHeight+3__, save both files.
+Once you set the `ChangeAcksHeight` to __DBHeight+4__, save both files.
 
 At the block height `ChangeAcksHeight` you should see both nodes change identities. If none of your nodes crash, and the identities change, the swap was successful.
 
