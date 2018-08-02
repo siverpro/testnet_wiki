@@ -49,7 +49,14 @@ Now copy your key to your node (replace the username and ip with appropriate val
 Exit and log back in to your node. If you specified a passphrase, you need to enter it here.
     
 #### Windows
-Using PuTTy (coming soon)
+Download and install PuTTy (use the MSI installer as it includes puttygen)
+https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
+Select RSA and increase to a 4096-bits key in the bottom right field and generate a key. Type in a passphrase (optional, recommended). Now save your keys.
+
+Now copy the entire public key, it starts with `ssh-rsa` and ends with == followed by the key comment. On your node, create your .ssh folder if it does not already exist. Now create and/or edit the file `./ssh/authorized_keys` and paste your key here.
+
+The next time you use PuTTy to connect, go to your Connection -> SSH -> Auth setting and browse to the PRIVATE key you saved earlier. Save the connection and try to connect. It should now connect using your SSH key instead of password.
 
 ### 2. SSH Daemon options
 
