@@ -1,4 +1,14 @@
-## Firewall
+[TOC]
+
+### Firewall
+In order to have your node join the swarm (or even function properly), you need to expose a couple of ports. The set up depends on whether you use an external firewall (or NAT), such as AWS or hosting at home, or rely on the node's own firewall to secure it (most VPS-services). If you do not want to join the authority set, only port 8110 needs to be opened to the public.
+
+## External firewall / NAT
+No firewall needs to be configured on the node itself, but it can still be set up for added security in case your external firewall gets compromised.
+You need to allow access to port 2376, 2222 and 8088 _ONLY TO_ 54.171.68.124. Failure to do this properly can compromise your node. Port 8090 to public is beneficial for testnet debugging. Port 8110 is required to be open to the public, this is the port the network communicates on.
+The steps to do this varies greatly by your individual set up (NAT or not, firewall/router model, etc..)
+
+## Internal firewall
 
 In order to join the swarm, first ensure that your firewall rules allow access on the following ports. All swarm communications occur over a self-signed TLS certificate. Due to the way iptables and docker work you cannot use the `INPUT` chain to block access to apps running in a docker container as it's not a local destination but a `FORWARD` destination. By default when you map a port into a docker container it opens up to `any` host. To restrict access we need to add our rules in the `DOCKER-USER` chain [reference](https://docs.docker.com/network/iptables/).
 
@@ -9,7 +19,7 @@ In addition,  the following ports must be opened for factomd to function which w
 - `8088` to `54.171.68.124`, the factomd API port
 - `8090` to `0.0.0.0`, the factomd Control panel
   - Keeping this open to the world is beneficial on testnet for debugging purposes
-- `8110` to the world, the factomd testnet port
+- `8110` to `0.0.0.0`, the factomd testnet port
 
 An example using `iptables`:
 ```
@@ -22,3 +32,32 @@ sudo iptables -A DOCKER-USER -p tcp -m tcp --dport 8110 -j ACCEPT
 Replace `<external if>` with the name of the interface you use to connect to the internet eg. eth0 or ens0. To see interfaces use `ip addr list`
   
 Don't forget to [save](https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands#saving-rules) the rules!
+
+### Harden SSH Access
+1. Create an authentication key-pair
+
+*Linux*
+This is done on your local computer, not your node, and will create a 4096-bit RSA key-pair. During creation, you will be given the option to encrypt the private key with a passphrase. This means that it cannot be used without entering the passphrase, unless you save it to your local desktop’s keychain manager. We suggest you use the key-pair with a passphrase, but you can leave this field blank if you don’t want to use one.
+    
+    ssh-keygen -b 4096
+    
+Press Enter to use the default names `id_rsa` and `id_rsa.pub` in `/home/your_username/.ssh` before entering your passphrase.
+
+Now copy your key to your node (replace the username and ip with appropriate values)
+
+    ssh-copy-id example_user@173.14.222.121
+    
+Exit and log back in to your node. If you specified a passphrase, you need to enter it here.
+    
+*Windows*
+Using PuTTy (coming soon)
+
+2. SSH Daemon options
+
+The most important setting is now allowing root over ssh. Edit /etc/ssh/sshd_config using your favorite editor:
+
+    sudo nano /etc/ssh/sshd_config
+    
+Uncomment if necessary and set `PermitRootLogin no`
+
+If you use keypair-based login as outlined above, it is a good idea to disable password based login. Uncomment and set `PasswordAuthentication no`
