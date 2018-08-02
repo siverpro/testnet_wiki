@@ -14,14 +14,8 @@ Note: Remember to include a graphical interface if you are not Linux savvy (ubun
 
 Install Docker
 --------------
-Note: [This alternative installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
- could be of help if you run into any problems.
-
-Docker is installed using a terminal window. Open one, and then install the docker.io package:
-
-    sudo apt-get install docker.io
-
-More about the installation can be found [here](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+Follow the excellent Docker install-guide [here](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
+The guide involves removing any old versions of docker, adding the docker-ce repository and then installing it.
 
 After the installation is complete you need to grant your Ubuntu-user
 permission to actually use the docker program. This is done by executing the
@@ -41,7 +35,13 @@ TL:DR; (For experienced users)
 Install Ubuntu Server. Update and install required packages:
 
     sudo apt-get update -y && sudo apt-get upgrade -y
-    sudo apt-get install curl docker.io git -y
+    sudo apt-get install curl git apt-transport-https ca-certificates curl software-properties-common -y
+    
+Add the docker-ce repository and install:
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt-get install docker-ce
     
 Add docker privileges to the current user:
 
