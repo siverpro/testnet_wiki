@@ -20,6 +20,7 @@ A full list of CLI commands is available by executing:
 
 ## The enterprise wallet
 In addition to the commandline tools, you can download the enterprise wallet from https://github.com/FactomProject/distribution#factom-enterprise-wallet
+
 This is a GUI application you can install on any machine, including the one running your node. Go to Settings and uncheck `Custom Factomd Location` if you are running your node locally. If you are running your Factomd node on a linux server and want to connect to it using the enterprise wallet on your Windows computer, simply check "Custom Factomd Location" on your Windows wallet and type in your server's IP-address followed by the TCP port (8088 is the default testnet API port), for example `192.168.105.55:8088`
 
 ------
