@@ -8,7 +8,7 @@ account balances pulled and APIs interfaced.
 
 If you are interested in interacting with the Factom Community Testnet, download the latest appropriate [binary release](https://github.com/FactomProject/distribution/releases). This will install the factomd, factom-cli and factom-walletd commandline tools. Now download factomd.conf from the [testnet toolkit](https://github.com/FactomProject/factomd-testnet-toolkit) and place it in the appropriate folder. For Ubuntu, this will be in your home folder `~/.factom/m2`. For Windows, look in your AppData/Roaming folder.
 
-Open a terminal window and start factom:
+Open a terminal window and start your local factom node:
 
     factomd -customnet=fct_community_test
 
