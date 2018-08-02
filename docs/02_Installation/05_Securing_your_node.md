@@ -35,8 +35,7 @@ Don't forget to [save](https://www.digitalocean.com/community/tutorials/iptables
 
 ## Harden SSH Access
 ### 1. Create an authentication key-pair
-
-*Linux*
+#### Linux
 This is done on your local computer, not your node, and will create a 4096-bit RSA key-pair. During creation, you will be given the option to encrypt the private key with a passphrase. This means that it cannot be used without entering the passphrase, unless you save it to your local desktop’s keychain manager. We suggest you use the key-pair with a passphrase, but you can leave this field blank if you don’t want to use one.
     
     ssh-keygen -b 4096
@@ -49,7 +48,7 @@ Now copy your key to your node (replace the username and ip with appropriate val
     
 Exit and log back in to your node. If you specified a passphrase, you need to enter it here.
     
-*Windows*
+#### Windows
 Using PuTTy (coming soon)
 
 ### 2. SSH Daemon options
