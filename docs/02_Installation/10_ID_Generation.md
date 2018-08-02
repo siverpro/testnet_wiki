@@ -1,7 +1,7 @@
 # Create and setup server identities (Factom blockchain ID)
 -------------------------------
 
-To be able to join the test net as an authority server you will need a «personal» server identity. The identity is generated using the serveridentity program. Entry Credits is required to create your identity to the blockchain.
+To be able to join the test net as an authority server you will need a «personal» server identity. The identity is generated using the serveridentity program. Entry Credits are required to create your identity to the blockchain.
 
 ## We will set the following up in the guide: 
 - Test Credits
