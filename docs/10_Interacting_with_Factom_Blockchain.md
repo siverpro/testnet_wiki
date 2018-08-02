@@ -29,7 +29,7 @@ This is a GUI application you can install on any machine, including the one runn
 | Task | Command | Information |
 |----- | ------- | ----------- |
 | Add Chain | `factom-cli addchain [-fq] [-n NAME1 -n NAME2 -h HEXNAME3] [-CET] ECADDRESS <STDIN>` | Create a new Factom Chain. Read data for the First Entry from stdin. Use the Entry Credits from the specified address. -C ChainID. -E EntryHash. -T TxID. |
-| Add Entry | `factom-cli addentry [-fq] [-n NAME1 -h HEXNAME2 ...|-c CHAINID] [-e EXTID1 -e EXTID2 -x HEXEXTID ...] [-CET] ECADDRESS <STDIN>` | Create a new Factom Entry. Read data for the Entry from stdin. Use the Entry Credits from the specified address. -C ChainID. -E EntryHash. -T TxID. |
+| Add Entry | `factom-cli addentry [-fq] [-n NAME1 -h HEXNAME2 ... -c CHAINID] [-e EXTID1 -e EXTID2 -x HEXEXTID ...] [-CET] ECADDRESS <STDIN>` | Create a new Factom Entry. Read data for the Entry from stdin. Use the Entry Credits from the specified address. -C ChainID. -E EntryHash. -T TxID. |
 | Check Balance | `factom-cli balance [-r] ADDRESS` | If this is an EC Address, returns number of Entry Credits. If this is a Factoid Address, returns the Factoid balance. |
 | Convert Testoids to Test Credits | `factom-cli buyec [-fqrT] FCTADDRESS ECADDRESS ECAMOUNT` | Buy ECAMOUNT number of entry credits. -f force. -q quiet. -r Netki DNS resolve. -T TxID. |
 | Export private addresses | `factom-cli exportaddresses` | List the private addresses stored in the wallet |
