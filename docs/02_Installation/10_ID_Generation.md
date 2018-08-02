@@ -28,6 +28,7 @@ Take note of your private TC address for the next step, beginning with "Esxxxxxx
 - Visit the Faucet and input your generated address
 - Verify that it has been funded by checking the balance in the wallet
 - Click the pencil-icon on your EC wallet and click "Display Private Key", you will need this for the next step.
+- Also create a new Factoid address to set up efficency and payout
 
 ## Download and build server identity program. The following are directions for linux.
 
@@ -70,4 +71,5 @@ Open a new terminal for these changes to take effect. You might even need to rel
 ## Set efficency and payout address
 
 https://luciap.ca/#/identity-management
+
 https://github.com/PaulBernier/factom-identity-cli
