@@ -9,8 +9,8 @@ Make sure you store the Docker Swarm mainnet key and certificate on your system.
 You can store these files in the directory /etc/docker for instance:
 ```
 sudo mkdir -p /etc/docker
-sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/cert.pem -O /etc/docker/factom-mainnet-cert.pem
-sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/key.pem -O /etc/docker/factom-mainnet-key.pem
+sudo wget https://raw.githubusercontent.com/FactomProject/factomd-testnet-toolkit/master/tls/cert.pem -O /etc/docker/factom-mainnet-cert.pem
+sudo wget https://raw.githubusercontent.com/FactomProject/factomd-testnet-toolkit/master/tls/key.pem -O /etc/docker/factom-mainnet-key.pem
 sudo chmod 644 /etc/docker/factom-mainnet-cert.pem
 sudo chmod 440 /etc/docker/factom-mainnet-key.pem
 sudo chgrp docker /etc/docker/*.pem
@@ -156,8 +156,9 @@ There are two means of launching your `factomd` instance:
 
 ### From the Docker CLI (recommended and better tested)
 
-Run this command _exactly_: `docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v5.2.0-rc1 -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
-`
+Run this command _exactly_: `docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v5.4.0-alpine -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf`
+
+Note: This command will not always be updated. You should check the [Factom Docker repository](https://hub.docker.com/r/factominc/factomd/tags/) for the latest version. In the above command, you should replace `factominc/factomd:vX.Y.X-alpine` with the latest version.
 
 ### From the Portainer UI
 
@@ -169,7 +170,7 @@ Then, click `containers > add container`.
 
 1. Name your container `factomd`.
 
-2. Enter the image name `factominc/factomd:v5.0.0-alpine`
+2. Enter the image name `factominc/factomd:v5.4.0-alpine` (See note above regarding the latest version in docker repository)
 
 3. Mark additional ports `8088:8088`, `8110`:`8110`, `8090:8090`.
 
