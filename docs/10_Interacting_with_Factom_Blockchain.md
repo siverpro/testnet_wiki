@@ -34,7 +34,7 @@ This is a GUI application you can install on any machine, including the one runn
 | Check Balance | `factom-cli balance [-r] ADDRESS` | If this is an EC Address, returns number of Entry Credits. If this is a Factoid Address, returns the Factoid balance. |
 | Convert Testoids to Test Credits | `factom-cli buyec [-fqrT] FCTADDRESS ECADDRESS ECAMOUNT` | Buy ECAMOUNT number of entry credits. -f force. -q quiet. -r Netki DNS resolve. -T TxID. |
 | Export private addresses | `factom-cli exportaddresses` | List the private addresses stored in the wallet |
-| Get data | `factom-cli get allentries` | chainhead | dblock | eblock | entry | firstentry | head | heights | walletheight | pendingentries | pendingtransactions | raw | dbheight | abheight | fbheight | ecbheight` | Get data about Factom Chains, Entries, and Blocks |
+| Get data | `factom-cli get allentries / chainhead / dblock / eblock / entry / firstentry / head / heights / walletheight / pendingentries / pendingtransactions / raw / dbheight / abheight / fbheight / ecbheight` | Get data about Factom Chains, Entries, and Blocks |
 | New TC address | `factom-cli newecaddress` | Generate a new Entry Credit Address in the wallet |
 | New Testoid address | `factom-cli newfctaddress` | Generate a new Factoid Address in the wallet |
 | Reciept query | `factom-cli receipt ENTRYHASH` | Returns a Receipt for a given Entry |
