@@ -6,11 +6,21 @@ Testoids (equivalent to Factoids) can be transferred or converted to Test credit
 (equivalent to Entry credits), chains and entries created, information on transfers and
 account balances pulled and APIs interfaced.
 
-A full list of CLI (command line interface) commands is available by executing:
+If you are interested in interacting with the Factom Community Testnet, download the latest appropriate [binary release](https://github.com/FactomProject/distribution/releases). This will install the factomd, factom-cli and factom-walletd. Now download factomd.conf from the [testnet toolkit](https://github.com/FactomProject/factomd-testnet-toolkit) and place it in the appropriate folder. For Ubuntu, this will be in your home folder `~/.factom/m2`. For Windows, look in your AppData/Roaming folder.
 
-    docker exec factomd factom-cli help
+Open a terminal window and start factom:
 
-All factomd commands have to be prefaced by: `docker exec factomd_node factom-cli`
+    factomd -customnet=fct_community_test
+
+This command will start a full factom testnet node. You should allow it to sync with the network (this can/will take hours) before you start interacting with the blockchain. Leave this running and start a new terminal in order to interact with the daemon. Open the control panel at http://localhost:8090 to check the status, or try `factom-cli get heights`
+
+A full list of CLI commands is available by executing:
+
+    factom-cli help
+
+## The enterprise wallet
+In addition to the commandline tools, you can download the enterprise wallet from https://github.com/FactomProject/distribution#factom-enterprise-wallet
+This is a GUI application you can install on any machine, including the one running your node. Go to Settings and uncheck `Custom Factomd Location` if you are running your node locally. If you are running your Factomd node on a linux server and want to connect to it using the enterprise wallet on your Windows computer, simply check "Custom Factomd Location" on your Windows wallet and type in your server's IP-address followed by the TCP port (8088 is the default testnet API port), for example `192.168.105.55:8088`
 
 ------
 
