@@ -54,16 +54,20 @@ https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 Select RSA and increase to a 4096-bits key in the bottom right field and generate a key. Type in a passphrase (optional, recommended). Now save your keys.
 
-Now copy the entire public key, it starts with `ssh-rsa` and ends with == followed by the key comment. On your node, create your .ssh folder if it does not already exist. Now create and/or edit the file `./ssh/authorized_keys` and paste your key here.
+Now copy the entire public key, it starts with `ssh-rsa` and ends with `==` followed by the key comment. On your node, create your .ssh folder if it does not already exist. Now create and/or edit the file `./ssh/authorized_keys` and paste your key here.
 
-The next time you use PuTTy to connect, go to your Connection -> SSH -> Auth setting and browse to the PRIVATE key you saved earlier. Save the connection and try to connect. It should now connect using your SSH key instead of password.
+The next time you use PuTTy to connect, go to your Connection -> SSH -> Auth setting and browse to the PRIVATE key you saved earlier. Save the connection and try to connect. You should now be able to connect using your SSH key instead of password.
 
 ### 2. SSH Daemon options
 
-The most important setting is now allowing root over ssh. Edit /etc/ssh/sshd_config using your favorite editor:
+Edit /etc/ssh/sshd_config using your favorite editor:
 
     sudo nano /etc/ssh/sshd_config
-    
-Uncomment if necessary and set `PermitRootLogin no`
 
-If you use keypair-based login as outlined above, it is a good idea to disable password based login. Uncomment and set `PasswordAuthentication no`
+Below are a handful of settings we recommend setting:
+
+    AddressFamily inet                  # listen only on IPv4
+    PermitRootLogin no                  # the most important setting, do not allow root login
+    PasswordAuthentication no           # disable password login
+    PubkeyAthentication yes             # enable keypair login
+    AuthorizedKeysFile .ssh/authorized_keys # keyfile location
