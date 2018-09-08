@@ -2,7 +2,8 @@
 Installing the Authority server on Ubuntu 18.04 LTS (Long Term Support)
 ======================================================================
 
-The videotutorial linked below covers the documentation up to, but not including, the section "ID generation". 
+The videotutorial shown below covers the documentation up to, but not including, the section "ID generation".
+
 [![YouTube Video](http://img.youtube.com/vi/Riy4I1gy9Bc/0.jpg)](http://www.youtube.com/watch?v=Riy4I1gy9Bc)
 
 Install Ubuntu Server edition
