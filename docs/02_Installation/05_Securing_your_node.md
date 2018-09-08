@@ -1,8 +1,5 @@
 [TOC]
 
-[![YouTube Video](http://img.youtube.com/vi/Riy4I1gy9Bc/0.jpg)](http://www.youtube.com/watch?v=Riy4I1gy9Bc)
-
-
 ## Firewall
 In order to have your node join the swarm (or even function properly), you need to expose a couple of ports. The set up depends on whether you use an external firewall (or NAT), such as AWS or hosting at home, or rely on the node's own firewall to secure it (most VPS-services). If you do not want to join the authority set, only port 8110 needs to be opened to the public.
 
