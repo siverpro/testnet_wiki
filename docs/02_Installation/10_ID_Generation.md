@@ -1,6 +1,8 @@
 # Create and setup server identities (Factom blockchain ID)
 -------------------------------
 
+[![YouTube Video Guide](http://img.youtube.com/vi/g9FzNtSB7I4/0.jpg)](http://www.youtube.com/watch?v=g9FzNtSB7I4)
+
 To be able to join the test net as an authority server you will need a «personal» server identity. The identity is generated using the serveridentity program. Entry Credits are required to create your identity to the blockchain.
 
 ## We will set the following up in the guide: 
@@ -69,6 +71,9 @@ Open a new terminal for these changes to take effect. You might even need to rel
 - Check the explorer that the new identity chains were created 10 minutes later.
 
 ## Set efficency and payout address
+
+[![YouTube Video Guide](http://img.youtube.com/vi/Q9AXt0UHoHM/0.jpg)](http://www.youtube.com/watch?v=Q9AXt0UHoHM)
+
 
 https://luciap.ca/#/identity-management
 
