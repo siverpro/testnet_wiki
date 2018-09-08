@@ -2,6 +2,9 @@
 Installing the Authority server on Ubuntu 18.04 LTS (Long Term Support)
 ======================================================================
 
+The videotutorial linked below covers the documentation up to, but not including, the section "ID generation". 
+[![YouTube Video](http://img.youtube.com/vi/Riy4I1gy9Bc/0.jpg)](http://www.youtube.com/watch?v=Riy4I1gy9Bc)
+
 Install Ubuntu Server edition
 -----------------------------
 [Download Ubuntu Server 18.04 LTS](https://www.ubuntu.com/download/server)  
@@ -11,6 +14,9 @@ Make a bootable USB by using a tool like Etcher or Rufus.
 
 Boot from the USB-stick you made, and [install Ubuntu](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server)  
 Note: Remember to include a graphical interface if you are not Linux savvy (ubuntu-desktop or GNOME).
+
+
+
 
 Install Docker
 --------------
