@@ -1,6 +1,10 @@
 **Warning:**  
 Never update your node without coordinating with a Testnet Administrator.
 
+**The videotutorial shown below covers updating and brainswapping.**
+
+[![YouTube Video Guide](http://img.youtube.com/vi/od1P_QXk91M/0.jpg)](http://www.youtube.com/watch?v=od1P_QXk91M)
+
 ----
 **Notes before updating:**
 1. If you verify that you are not a federated server (by checking [http://fct.tools/](http://fct.tools/)) you are able to do an update at any time, but write a notice about it in the discord channel #testnet-restarts first.
