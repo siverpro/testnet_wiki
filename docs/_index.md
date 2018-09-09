@@ -4,5 +4,5 @@
 <p>
 <h3>Contact information:</h3>
 E-mail: factom.testnet@icloud.com <br />
-Discord: https://discord.gg/XWJezKm <br />
+Discord: https://discord.gg/YYM9w2V <br />
 </p>
